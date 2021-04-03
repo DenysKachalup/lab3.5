@@ -4,35 +4,31 @@
 #include <sstream>
 
 using namespace std;
-Array::Array() 
-	:size(1) 
+
+void Array::Create(int n)
 {
-	m = new int[size];
+	m = new bool[size];
 
 	for (int i = 0; i < size; i++)
 	{
 		m[i] = 0;
 	}
+}
+Array::Array() 
+	:size(0)
+{
+	Create(size);
 }
 Array::Array(int n)
+	:size(n)
 {
-	if (n < max)
-		size = n;
-	else
-		size = max;
-
-	m = new int[size];
-
-	for (int i = 0; i < size; i++)
-	{
-		m[i] = 0;
-	}
+	Create(size);
 }
 
-Array::Array(Array& a)
+Array::Array(const Array& a)
+	:size(a.size)
 {
-	size = a.size;
-	m = new int[size];
+	m = new bool[size];
 
 	for (int i = 0; i < size; i++)
 	{
@@ -45,18 +41,15 @@ Array::~Array()
 	delete[]m;
 }
 
-void Array::setSize(int a)
-{
-	size = a;
-}
 
 Array& Array::operator = (const Array& a)
 {
 	if (&a == this) return *this;
 
 	delete[]m;
+	size = a.size;
 
-	m = new int[size];
+	m = new bool[size];
 
 	for (int i = 0; i < size; i++)
 	{
@@ -66,19 +59,18 @@ Array& Array::operator = (const Array& a)
 	return* this;
 }
 
-int& Array:: operator [] (const int i)
+bool& Array:: operator [] (const int i)
 {
 	return m[i];
 }
 
-const int& Array:: operator [] (const int i) const
+const bool& Array:: operator [] (const int i) const
 {
 	return m[i];
 }
 
 ostream& operator << (ostream& out, const Array& a)
 {
-	
 	out << string(a);
 	return out;
 }

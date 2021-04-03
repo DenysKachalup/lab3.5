@@ -15,8 +15,9 @@ namespace UnitTest1
 		
 		TEST_METHOD(TestMethod1)
 		{
-			Set a(5);
-			Assert::AreEqual(a.kilkist(), 5);
+			Set a;
+			a = a + 'A';
+			Assert::AreEqual(a.kilkist(), 1);
 		}
 	};
 }
