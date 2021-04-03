@@ -4,20 +4,20 @@
 class Set: public Array
 {
 public:
-	Set() :Array() {}
-	Set(int n);
-	~Set();
-	Set(Set& a);
+	Set() { size = max; Create(size); }
+	Set(const Set& a);
 	Set& operator = (const Set& a);
 
-	Set& operator + (int q);	 //Додавання елемента
-	Set& operator - (int q);	 //Віднімання елемента
+	Set& operator +=(char q);
+	Set& operator -=(const char q);
+	friend Set operator + (const Set& a, const char q);				//Додавання елемента
+	friend Set operator - (const Set& a, const char q);				//Віднімання елемента
 
-	bool Vhod(Set a, Set b);	 //вхід одної множини в іншу
-	bool rangeCheck(int);		 //Входження елемента в множину
-	Set& Objed(Set a, Set b);	 //Обєднання множин
-	Set& Peret(Set a, Set b);	 //Перетин множин
-	Set& Rizn(Set a, Set b);	 //Різниця множин
-	int kilkist();				 //Кількість елементів у множ
+	friend bool operator <=(const Set& a, const Set& b);				 //вхід одної множини в іншу
+	friend bool operator <=(const char q, const Set& a);					 //Входження елемента в множину
+	friend Set operator +(const Set& a, const Set& b);	 //Обєднання множин
+	friend Set operator *(const Set& a, const Set& b);	 //Перетин множин
+	friend Set operator -(const Set& a, const Set& b);	 //Різниця множин
+	int kilkist();							 //Кількість елементів у множ
 };
 

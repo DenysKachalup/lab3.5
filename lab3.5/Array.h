@@ -7,24 +7,22 @@ using namespace std;
 
 class Array
 {
-private:
-	int size;
 protected:
 	static const int max = 256;
-	int* m;
+	bool* m;
+	int size;
+
+	void Create(int n);
 
 public:
-
 	Array();
 	Array(int n );
 	~Array();
-	Array(Array& a);
-	void setSize(int a);
-	int getSize() const { return size; }
+	Array(const Array& a);
 
 	Array& operator = (const Array& a);
-	int& operator [] (const int i);
-	const int& operator [] (const int i) const;
+	bool& operator [] (const int i);
+	const bool& operator [] (const int i) const;
 	operator string() const;
 
 	friend ostream& operator << (ostream& out, const Array& a);
